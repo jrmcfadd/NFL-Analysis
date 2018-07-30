@@ -1,0 +1,16 @@
+status: 301
+date: Sun, 29 Jul 2018 19:20:58 GMT
+content-type: text/html
+content-length: 150
+connection: keep-alive
+keep-alive: timeout=15
+location: https://www.pro-football-reference.com/pi/share/tp5Vl
+-x-permanent-redirect-url: https://www.pro-football-reference.com/pi/share/tp5Vl
+content-location: http://pfref.com/pi/share/tp5Vl   
+
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body bgcolor="white">
+<center><h1>301 Moved Permanently</h1></center>
+</body>
+</html>
