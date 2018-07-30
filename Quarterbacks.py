@@ -140,7 +140,7 @@ def generate_qb_list(data):
 
 
 
-data = scrape_by_url('https://www.pro-football-reference.com/years/2017/passing.htm')
+data = scrape_by_url('https://www.pro-football-reference.com/pi/share/Om8ZY')
 #data2 = scrape_by_url('http://nflsavant.com/search.php?hfPTY=&hfRTY=&hfPT=PASS%7C&hfF=&ddlDown=3&ddlQuarter=&ddlYardLineGT=&ddlYardLineLT=&txtGameDateGT=&txtGameDateLT=&txtYTGGT=&txtYTGLT=&txtYFPGT=&txtYFPLT=&hfPR=IsFirstDown%7C&ddlYear=2017&ddlOTeam=&ddlDTeam=&ddlBall=Offense&ddlPenaltyType=&ddlOrderBy=Percentage#results')
 qbs = generate_qb_list(data)
 
@@ -150,7 +150,6 @@ def grade(qbname, yards, tds, ints, comperc, qbr, rating, record, wins, losses, 
 
 
 for qb in qbs:
-
     if qb['pos'] == 'QB' or qb['pos'] == 'Qb' or qb['pos'] == 'qB' or qb['pos'] == 'qb' and qb['name'] and qb['qbr'] != '':
 
         qbname = qb['name'].strip()
@@ -182,7 +181,30 @@ for qb in qbs:
         losses = int(record[1])
         draws = int(record[2])
 
-        #print(wins)
+        comebacks = qb['4qc'].strip()
+        if comebacks == 0 or comebacks == '0' or comebacks == '':
+            comebacks = int(0)
+        else:
+            comebacks = int(comebacks)
+
+        gwd = qb['gwd'].strip()
+        if gwd == 0 or gwd == '0' or gwd == '':
+            gwd = int(0)
+        else:
+            gwd = int(gwd)
+
+
+        finalGrade = 0
+        finalGrade = finalGrade + (numpy.floor(yards/250))
+        finalGrade = finalGrade + (comperc/3)
+        finalGrade = finalGrade + (tds/2)
+        finalGrade = finalGrade - (ints*.75)
+        finalGrade = finalGrade + (comebacks*2)
+        finalGrade = finalGrade + (gwd*4)
+
+
+
+        print(qb['name'] + "'s Grade is : " + str(finalGrade))
 
         #print(qbname + " - " + yards + " - " + tds + " - " + ints + " - " + comperc + " - " + qbr + " - " + rating + " - " + record)
 
